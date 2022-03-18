@@ -33,6 +33,7 @@ $ flutter run --flavor production --target lib/main_production.dart
 ## TODO:
 - [ ] Custom icons / launch screen
 - [ ] Better error handling
+- [ ] Split into smaller parts (and reuse icon buttons)
 - [ ] More user-friendly authorization flow
 - [ ] Bug Fixes
 - [ ] Other login options
