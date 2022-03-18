@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>819253415293-9igdkajutqr73j4oqps1i4ta0f396n4d.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.819253415293-9igdkajutqr73j4oqps1i4ta0f396n4d</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDwfEkW7j1kIA3_FLDxeUXBX7HW1jj2KrM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>819253415293</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.merelj.julia.sets.normal-julia-sets</string>
+	<key>PROJECT_ID</key>
+	<string>julia-sets</string>
+	<key>STORAGE_BUCKET</key>
+	<string>julia-sets.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:819253415293:ios:7f4e7ae6be3f743cb25014</string>
+</dict>
+</plist>

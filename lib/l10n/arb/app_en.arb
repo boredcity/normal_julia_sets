@@ -1,0 +1,16 @@
+{
+    "@@locale": "en",
+    "appTitle": "Normal Julia Sets",
+    "appBarTitle": "Sets",
+    "createFirstSet": "No sets currently exist\nPress here to create a new one",
+    "labelMaxIterationsCount": "Max iterations count:",
+    "labelEscapeRadius": "Escape radius:",
+    "labelRealConstant": "Real constant:",
+    "labelImaginaryConstant": "Imaginary constant:",
+    "confirmRemovalTitle": "Are you sure?",
+    "confirmRemovalContent": "This action will remove current set. Are you sure?",
+    "confirmRemovalYes": "Yes, remove set",
+    "confirmRemovalNo": "No, cancel",
+    "retriableErrorOcurred": "Error ocurred. Please, try again",
+    "loginButtonText": "Login"
+}
