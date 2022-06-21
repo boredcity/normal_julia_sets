@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:normal_julia_sets/normal_julia_sets/cubit/sets_state.dart';
 import 'package:normal_julia_sets/normal_julia_sets/models/nullable.dart';
 
@@ -22,7 +23,9 @@ class SetsCubit extends Cubit<SetsState> {
       final sets = await setService.getSets();
       emit(ConnectedSetsState(list: sets, err: null));
     } catch (err) {
-      emit(ConnectedSetsState(list: originalState.list, err: err));
+      final newState = ConnectedSetsState(list: originalState.list, err: err);
+      emit(newState);
+      debugPrint(err.toString());
     }
   }
 
@@ -60,10 +63,12 @@ class SetsCubit extends Cubit<SetsState> {
     required SetProperties setProps,
   }) async {
     try {
+      debugPrint('Started sync');
       final savedSet = (setProps.id == SetProperties.tempId
               ? await setService.createSet(setProps)
               : await setService.updateSet(setProps))
           .copyWith(image: Nullable(setProps.image));
+      debugPrint('Finished sync');
       final savedList = state.list
           .map(
             (el) => el.id == setProps.id ? savedSet : el,
@@ -72,6 +77,7 @@ class SetsCubit extends Cubit<SetsState> {
       emit(ConnectedSetsState(list: savedList, err: null));
     } catch (err) {
       emit(ConnectedSetsState(list: originalList, err: err));
+      debugPrint(err.toString());
     }
   }
 
@@ -79,7 +85,7 @@ class SetsCubit extends Cubit<SetsState> {
     final originalState = state;
     final newList = state.list.where((el) => el.id != setProps.id).toList();
     if (setProps.id == SetProperties.tempId) {
-      emit(originalState.copyWith(list: newList));
+      emit(ConnectedSetsState(err: null, list: newList));
       return;
     }
     try {

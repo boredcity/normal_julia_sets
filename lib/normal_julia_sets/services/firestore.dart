@@ -4,6 +4,7 @@ import 'dart:ui';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/foundation.dart';
 import 'package:normal_julia_sets/app/services/auth.dart';
 import 'package:normal_julia_sets/normal_julia_sets/models/set_properties.dart';
 import 'package:path_provider/path_provider.dart';
@@ -57,6 +58,7 @@ class FirestoreService implements SetsService {
       'author': uid,
       'imageSrc': await _uploadImage(set.image!, set.created),
     };
+    debugPrint('uploaded');
     if (setId == null) {
       data['created'] = FieldValue.serverTimestamp();
     }
@@ -64,6 +66,7 @@ class FirestoreService implements SetsService {
     await ref.set(data);
     final updated = await ref.get();
     final returnedData = updated.data();
+    debugPrint('updated');
 
     if (returnedData == null) throw Exception('Failed to update');
     final returnedSet = <String, dynamic>{...returnedData, 'id': updated.id};
@@ -96,12 +99,15 @@ class FirestoreService implements SetsService {
   Future<String> _uploadImage(Image img, Timestamp timestamp) async {
     final uid = _getUid();
     final imgToData = await img.toByteData(format: ImageByteFormat.png);
+    debugPrint('serialized');
     final tmpDir = await getTemporaryDirectory();
+    debugPrint('got directory');
     final fileName = '$uid-${timestamp.toDate().toIso8601String()}';
     final file = File('${tmpDir.path}/$fileName.png');
     await file.writeAsBytes(imgToData!.buffer.asInt8List());
-
-    final task = await _store.ref('uploads/$fileName.png').putFile(file);
+    debugPrint('written');
+    final task = await _store.ref('uploads/$fileName.png').putFile(file, SettableMetadata(contentType: 'image/png'));
+    debugPrint('put');
     return task.ref.getDownloadURL();
   }
 }

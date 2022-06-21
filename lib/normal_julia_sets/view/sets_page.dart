@@ -34,18 +34,25 @@ class SetsPageState extends State<SetsPage> {
     return Scaffold(
       backgroundColor: AppColors.champagnePink,
       appBar: AppBar(
-        title: Text(l10n.appBarTitle),
+        title: Text(
+          l10n.appBarTitle,
+          style: const TextStyle(color: AppColors.champagnePink),
+        ),
         actions: [
-          IconButton(
-            key: const ValueKey('create'),
-            iconSize: 32,
-            onPressed: editingSet == null ? onCreateSet : null,
-            icon: Icon(
-              Icons.note_add_rounded,
-              color: AppColors.champagnePink.withOpacity(
-                editingSet == null ? 1 : 0.7,
-              ),
-            ),
+          BlocBuilder<SetsCubit, SetsState>(
+            builder: (context, state) {
+              return IconButton(
+                key: const ValueKey('create'),
+                iconSize: 32,
+                onPressed: canEdit(state) ? onCreateSet : null,
+                icon: Icon(
+                  Icons.note_add_rounded,
+                  color: AppColors.champagnePink.withOpacity(
+                    canEdit(state) ? 1 : 0.5,
+                  ),
+                ),
+              );
+            },
           ),
           IconButton(
             key: const ValueKey('logout'),
@@ -156,7 +163,7 @@ class SetsPageState extends State<SetsPage> {
                                   CardControls(
                                     key: const ValueKey('controls'),
                                     props: props,
-                                    disabled: editingSet != null,
+                                    disabled: !canEdit(state),
                                     onEdit: onStartEditingSet,
                                     onRemove: onRemoveSet,
                                     onCreateClone: onCreateSet,
@@ -249,6 +256,10 @@ class SetsPageState extends State<SetsPage> {
         duration: const Duration(milliseconds: 300),
       );
     }
+  }
+
+  bool canEdit(SetsState state) {
+    return state is! LocalSetsState && editingSet == null;
   }
 
   void onSaveEditingSet() {

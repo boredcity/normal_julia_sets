@@ -12,6 +12,7 @@ abstract class SetsState extends Equatable {
 
   final bool isConnecting;
   final List<SetProperties> list;
+  // ignore: unnecessary_question_mark
   final dynamic? err; // TODO(merelj): use typed errors
 
   @override
@@ -57,6 +58,7 @@ class LocalSetsState extends SetsState {
 class ConnectedSetsState extends SetsState {
   const ConnectedSetsState({
     required List<SetProperties> list,
+    // ignore: unnecessary_question_mark
     required dynamic? err,
   }) : super(
           isConnecting: false,

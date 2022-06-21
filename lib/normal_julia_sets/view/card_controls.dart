@@ -21,10 +21,10 @@ class CardControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final buttonIconColor = AppColors.champagnePink.withOpacity(
-      disabled ? 0.7 : 1,
+      !disabled ? 1 : 0.5,
     );
     final buttonBackgroundColor = AppColors.semiTransparentDark.withOpacity(
-      disabled ? 0.2 : 0.5,
+      !disabled ? 0.5 : 0.2,
     );
     return Material(
       color: Colors.transparent,
